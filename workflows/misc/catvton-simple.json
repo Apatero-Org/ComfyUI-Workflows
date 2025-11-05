@@ -1,0 +1,527 @@
+{
+    "extra": {
+        "ds": {
+            "scale": 0.8264462809917354,
+            "offset": [
+                402.8959111748886,
+                279.847563340181
+            ]
+        }
+    },
+    "links": [
+        [
+            12,
+            15,
+            0,
+            16,
+            0,
+            "IMAGE"
+        ],
+        [
+            13,
+            17,
+            0,
+            15,
+            0,
+            "IMAGE"
+        ],
+        [
+            14,
+            18,
+            0,
+            15,
+            2,
+            "IMAGE"
+        ],
+        [
+            16,
+            19,
+            1,
+            15,
+            1,
+            "MASK"
+        ],
+        [
+            17,
+            19,
+            1,
+            20,
+            0,
+            "MASK"
+        ],
+        [
+            18,
+            17,
+            0,
+            19,
+            0,
+            "IMAGE"
+        ]
+    ],
+    "nodes": [
+        {
+            "id": 19,
+            "pos": [
+                175.13912963867188,
+                230.9681854248047
+            ],
+            "mode": 0,
+            "size": [
+                466.1999816894531,
+                534
+            ],
+            "type": "LayerMask: HumanPartsUltra",
+            "color": "rgba(27, 80, 119, 0.7)",
+            "flags": {},
+            "order": 2,
+            "inputs": [
+                {
+                    "link": 18,
+                    "name": "image",
+                    "type": "IMAGE"
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "image",
+                    "type": "IMAGE",
+                    "links": null
+                },
+                {
+                    "name": "mask",
+                    "type": "MASK",
+                    "links": [
+                        16,
+                        17
+                    ],
+                    "slot_index": 1
+                }
+            ],
+            "properties": {
+                "Node name for S&R": "LayerMask: HumanPartsUltra"
+            },
+            "widgets_values": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                "VITMatte",
+                8,
+                9,
+                0.01,
+                0.99,
+                true,
+                "cpu",
+                2
+            ]
+        },
+        {
+            "id": 16,
+            "pos": [
+                1255.7169189453125,
+                132.0540008544922
+            ],
+            "mode": 0,
+            "size": [
+                315,
+                270
+            ],
+            "type": "SaveImage",
+            "flags": {},
+            "order": 5,
+            "inputs": [
+                {
+                    "link": 12,
+                    "name": "images",
+                    "type": "IMAGE"
+                }
+            ],
+            "outputs": [],
+            "properties": {},
+            "widgets_values": [
+                "ComfyUI"
+            ]
+        },
+        {
+            "id": 20,
+            "pos": [
+                824.5263671875,
+                371.45166015625
+            ],
+            "mode": 0,
+            "size": [
+                277.20001220703125,
+                246
+            ],
+            "type": "LayerMask: MaskPreview",
+            "color": "rgba(27, 80, 119, 0.7)",
+            "flags": {},
+            "order": 4,
+            "inputs": [
+                {
+                    "link": 17,
+                    "name": "mask",
+                    "type": "MASK"
+                }
+            ],
+            "outputs": [],
+            "properties": {
+                "Node name for S&R": "LayerMask: MaskPreview"
+            },
+            "widgets_values": []
+        },
+        {
+            "id": 15,
+            "pos": [
+                826.012939453125,
+                7.970379829406738
+            ],
+            "mode": 0,
+            "size": [
+                315,
+                218
+            ],
+            "type": "CatVTONWrapper",
+            "flags": {},
+            "order": 3,
+            "inputs": [
+                {
+                    "link": 13,
+                    "name": "image",
+                    "type": "IMAGE"
+                },
+                {
+                    "link": 16,
+                    "name": "mask",
+                    "type": "MASK"
+                },
+                {
+                    "link": 14,
+                    "name": "refer_image",
+                    "type": "IMAGE"
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "image",
+                    "type": "IMAGE",
+                    "links": [
+                        12
+                    ],
+                    "slot_index": 0
+                }
+            ],
+            "properties": {
+                "Node name for S&R": "CatVTONWrapper"
+            },
+            "widgets_values": [
+                25,
+                "fp16",
+                153876118285724,
+                "randomize",
+                40,
+                2.5
+            ]
+        },
+        {
+            "id": 18,
+            "pos": [
+                -331.00469970703125,
+                20.064918518066406
+            ],
+            "mode": 0,
+            "size": [
+                390.5999755859375,
+                366
+            ],
+            "type": "ComfyUIDeployExternalImage",
+            "flags": {},
+            "order": 0,
+            "inputs": [
+                {
+                    "link": null,
+                    "name": "default_value",
+                    "type": "IMAGE",
+                    "shape": 7
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "image",
+                    "type": "IMAGE",
+                    "links": [
+                        14
+                    ],
+                    "slot_index": 0
+                }
+            ],
+            "properties": {
+                "Node name for S&R": "ComfyUIDeployExternalImage"
+            },
+            "widgets_values": [
+                "cloth",
+                "",
+                "",
+                "https://github.com/chflame163/ComfyUI_CatVTON_Wrapper/blob/main/workflow/panda_t_shirt.jpg?raw=true",
+                ""
+            ]
+        },
+        {
+            "id": 17,
+            "pos": [
+                139.67552185058594,
+                -363.8102722167969
+            ],
+            "mode": 0,
+            "size": [
+                390.5999755859375,
+                366
+            ],
+            "type": "ComfyUIDeployExternalImage",
+            "flags": {},
+            "order": 1,
+            "inputs": [
+                {
+                    "link": null,
+                    "name": "default_value",
+                    "type": "IMAGE",
+                    "shape": 7
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "image",
+                    "type": "IMAGE",
+                    "links": [
+                        13,
+                        18
+                    ],
+                    "slot_index": 0
+                }
+            ],
+            "properties": {
+                "Node name for S&R": "ComfyUIDeployExternalImage"
+            },
+            "widgets_values": [
+                "person",
+                "",
+                "",
+                "https://github.com/chflame163/ComfyUI_CatVTON_Wrapper/blob/main/workflow/girl.jpg?raw=true",
+                ""
+            ]
+        }
+    ],
+    "config": {},
+    "groups": [],
+    "version": 0.4,
+    "last_link_id": 18,
+    "last_node_id": 20,
+    "workflow_api": {
+        "15": {
+            "_meta": {
+                "title": "CatVTON Wrapper"
+            },
+            "inputs": {
+                "cfg": 2.5,
+                "mask": [
+                    "19",
+                    1
+                ],
+                "seed": 153876118285724,
+                "image": [
+                    "17",
+                    0
+                ],
+                "steps": 40,
+                "mask_grow": 25,
+                "refer_image": [
+                    "18",
+                    0
+                ],
+                "mixed_precision": "fp16"
+            },
+            "class_type": "CatVTONWrapper"
+        },
+        "16": {
+            "_meta": {
+                "title": "Save Image"
+            },
+            "inputs": {
+                "images": [
+                    "15",
+                    0
+                ],
+                "filename_prefix": "ComfyUI"
+            },
+            "class_type": "SaveImage"
+        },
+        "17": {
+            "_meta": {
+                "title": "External Image (ComfyUI Deploy)"
+            },
+            "inputs": {
+                "input_id": "person",
+                "description": "",
+                "display_name": "",
+                "default_value_url": "https://github.com/chflame163/ComfyUI_CatVTON_Wrapper/blob/main/workflow/girl.jpg?raw=true"
+            },
+            "class_type": "ComfyUIDeployExternalImage"
+        },
+        "18": {
+            "_meta": {
+                "title": "External Image (ComfyUI Deploy)"
+            },
+            "inputs": {
+                "input_id": "cloth",
+                "description": "",
+                "display_name": "",
+                "default_value_url": "https://github.com/chflame163/ComfyUI_CatVTON_Wrapper/blob/main/workflow/panda_t_shirt.jpg?raw=true"
+            },
+            "class_type": "ComfyUIDeployExternalImage"
+        },
+        "19": {
+            "_meta": {
+                "title": "LayerMask: Human Parts Ultra(Advance)"
+            },
+            "inputs": {
+                "face": false,
+                "hair": false,
+                "image": [
+                    "17",
+                    0
+                ],
+                "device": "cpu",
+                "glasses": false,
+                "left_arm": false,
+                "left_leg": false,
+                "left_foot": false,
+                "right_arm": false,
+                "right_leg": false,
+                "right_foot": false,
+                "torso_skin": false,
+                "black_point": 0.01,
+                "top_clothes": true,
+                "white_point": 0.99,
+                "detail_erode": 8,
+                "detail_dilate": 9,
+                "detail_method": "VITMatte",
+                "bottom_clothes": false,
+                "max_megapixels": 2,
+                "process_detail": true
+            },
+            "class_type": "LayerMask: HumanPartsUltra"
+        },
+        "20": {
+            "_meta": {
+                "title": "LayerMask: MaskPreview"
+            },
+            "inputs": {
+                "mask": [
+                    "19",
+                    1
+                ]
+            },
+            "class_type": "LayerMask: MaskPreview"
+        }
+    },
+    "environment": {
+        "comfyui_version": "9aac21f894a122ddb8d825c57ad61c0db5e630db",
+        "gpu": "A10G",
+        "docker_command_steps": {
+            "steps": [
+                {
+                    "id": "88492fcc-5",
+                    "data": {
+                        "url": "https://github.com/chflame163/ComfyUI_CatVTON_Wrapper",
+                        "hash": "e2ae9b62c53a7c2e009f2448975c6909c83f73b5",
+                        "meta": {
+                            "message": "Merge pull request #45 from Comfy-Org/main\n\nLimit pillow to v9 or below.",
+                            "committer": {
+                                "date": "2025-01-01T12:55:15.000Z",
+                                "name": "GitHub",
+                                "email": "noreply@github.com"
+                            },
+                            "commit_url": "https://github.com/chflame163/ComfyUI_CatVTON_Wrapper/commit/e2ae9b62c53a7c2e009f2448975c6909c83f73b5",
+                            "latest_hash": "e2ae9b62c53a7c2e009f2448975c6909c83f73b5",
+                            "stargazers_count": 320
+                        },
+                        "name": "ComfyUI_CatVTON_Wrapper",
+                        "files": [
+                            "https://github.com/chflame163/ComfyUI_CatVTON_Wrapper"
+                        ],
+                        "install_type": "git-clone"
+                    },
+                    "type": "custom-node"
+                },
+                {
+                    "id": "77056c27-f",
+                    "data": {
+                        "url": "https://github.com/chflame163/ComfyUI_LayerStyle",
+                        "hash": "a085d8ca3cf3e3e8624ac0bb37a474d9d329e60e",
+                        "meta": {
+                            "message": "fix a bug of HalfTone",
+                            "committer": {
+                                "date": "2025-03-26T03:39:50.000Z",
+                                "name": "chflame163",
+                                "email": "chflame@163.com"
+                            },
+                            "commit_url": "https://github.com/chflame163/ComfyUI_LayerStyle/commit/a085d8ca3cf3e3e8624ac0bb37a474d9d329e60e",
+                            "latest_hash": "a085d8ca3cf3e3e8624ac0bb37a474d9d329e60e",
+                            "stargazers_count": 2130
+                        },
+                        "name": "ComfyUI Layer Style",
+                        "files": [
+                            "https://github.com/chflame163/ComfyUI_LayerStyle"
+                        ],
+                        "install_type": "git-clone"
+                    },
+                    "type": "custom-node"
+                },
+                {
+                    "id": "647ad4f2-e",
+                    "data": {
+                        "url": "https://github.com/chflame163/ComfyUI_LayerStyle_Advance",
+                        "hash": "7d599ea867d9c9562660136ba72fcbb11ab6763f",
+                        "meta": {
+                            "message": "commit GeminiImageEdit,GeminiV2,ObjectDetectorGeminiV2 nodes",
+                            "committer": {
+                                "date": "2025-04-04T11:50:36.000Z",
+                                "name": "chflame163",
+                                "email": "chflame@163.com"
+                            },
+                            "commit_url": "https://github.com/chflame163/ComfyUI_LayerStyle_Advance/commit/7d599ea867d9c9562660136ba72fcbb11ab6763f",
+                            "latest_hash": "7d599ea867d9c9562660136ba72fcbb11ab6763f",
+                            "stargazers_count": 242
+                        },
+                        "name": "ComfyUI_LayerStyle_Advance",
+                        "files": [
+                            "https://github.com/chflame163/ComfyUI_LayerStyle_Advance"
+                        ],
+                        "install_type": "git-clone"
+                    },
+                    "type": "custom-node"
+                }
+            ]
+        },
+        "max_containers": 2,
+        "install_custom_node_with_gpu": false,
+        "run_timeout": 300,
+        "scaledown_window": 60,
+        "extra_docker_commands": [],
+        "base_docker_image": null,
+        "python_version": null,
+        "extra_args": null,
+        "prestart_command": null,
+        "min_containers": 0,
+        "machine_hash": "57ce8d03156e82f4ca4209c8f211224879ec5a4638879448d4b1e037d5c67d66",
+        "disable_metadata": true
+    }
+}

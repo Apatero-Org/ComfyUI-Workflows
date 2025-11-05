@@ -1,0 +1,428 @@
+{
+    "extra": {
+        "ds": {
+            "scale": 0.8264462809917354,
+            "offset": [
+                -87.21541267102812,
+                316.5367777088412
+            ]
+        }
+    },
+    "links": [
+        [
+            13,
+            16,
+            0,
+            15,
+            1,
+            "FL2MODEL"
+        ],
+        [
+            14,
+            17,
+            0,
+            15,
+            0,
+            "IMAGE"
+        ],
+        [
+            15,
+            15,
+            2,
+            18,
+            0,
+            "STRING"
+        ],
+        [
+            16,
+            15,
+            0,
+            19,
+            0,
+            "IMAGE"
+        ]
+    ],
+    "nodes": [
+        {
+            "id": 16,
+            "pos": [
+                185.904541015625,
+                344.1656188964844
+            ],
+            "mode": 0,
+            "size": [
+                315,
+                106
+            ],
+            "type": "Florence2ModelLoader",
+            "flags": {},
+            "order": 0,
+            "inputs": [
+                {
+                    "link": null,
+                    "name": "lora",
+                    "type": "PEFTLORA",
+                    "shape": 7
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "florence2_model",
+                    "type": "FL2MODEL",
+                    "links": [
+                        13
+                    ]
+                }
+            ],
+            "properties": {
+                "Node name for S&R": "Florence2ModelLoader"
+            },
+            "widgets_values": [
+                "Florence-2-large",
+                "fp16",
+                "sdpa"
+            ]
+        },
+        {
+            "id": 17,
+            "pos": [
+                97.01078796386719,
+                -148.63870239257812
+            ],
+            "mode": 0,
+            "size": [
+                390.5999755859375,
+                366
+            ],
+            "type": "ComfyUIDeployExternalImage",
+            "flags": {},
+            "order": 1,
+            "inputs": [
+                {
+                    "link": null,
+                    "name": "default_value",
+                    "type": "IMAGE",
+                    "shape": 7
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "image",
+                    "type": "IMAGE",
+                    "links": [
+                        14
+                    ],
+                    "slot_index": 0
+                }
+            ],
+            "properties": {
+                "Node name for S&R": "ComfyUIDeployExternalImage"
+            },
+            "widgets_values": [
+                "input_image",
+                "",
+                "",
+                "https://comfy-deploy-output.s3.us-east-2.amazonaws.com/assets/img_8ucwS8VLsttoS3V5.png",
+                ""
+            ]
+        },
+        {
+            "id": 19,
+            "pos": [
+                1180.8526611328125,
+                -233.1660614013672
+            ],
+            "mode": 0,
+            "size": [
+                210,
+                246
+            ],
+            "type": "PreviewImage",
+            "flags": {},
+            "order": 3,
+            "inputs": [
+                {
+                    "link": 16,
+                    "name": "images",
+                    "type": "IMAGE"
+                }
+            ],
+            "outputs": [],
+            "properties": {
+                "Node name for S&R": "PreviewImage"
+            },
+            "widgets_values": []
+        },
+        {
+            "id": 18,
+            "pos": [
+                1482.674560546875,
+                68.69646453857422
+            ],
+            "mode": 0,
+            "size": [
+                366.79083251953125,
+                201.0988006591797
+            ],
+            "type": "ShowText|pysssss",
+            "flags": {},
+            "order": 4,
+            "inputs": [
+                {
+                    "link": 15,
+                    "name": "text",
+                    "type": "STRING",
+                    "widget": {
+                        "name": "text"
+                    }
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "STRING",
+                    "type": "STRING",
+                    "links": null,
+                    "shape": 6
+                }
+            ],
+            "properties": {
+                "Node name for S&R": "ShowText|pysssss"
+            },
+            "widgets_values": [
+                "",
+                "The image shows a man with blue eyes and a black jacket standing in front of a yellow background. He appears to be a character from the anime series Ao no Exorcist, as indicated by the text at the bottom of the image."
+            ]
+        },
+        {
+            "id": 15,
+            "pos": [
+                647.7020874023438,
+                -92.6019058227539
+            ],
+            "mode": 0,
+            "size": [
+                400,
+                364
+            ],
+            "type": "Florence2Run",
+            "flags": {},
+            "order": 2,
+            "inputs": [
+                {
+                    "link": 14,
+                    "name": "image",
+                    "type": "IMAGE"
+                },
+                {
+                    "link": 13,
+                    "name": "florence2_model",
+                    "type": "FL2MODEL"
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "image",
+                    "type": "IMAGE",
+                    "links": [
+                        16
+                    ],
+                    "slot_index": 0
+                },
+                {
+                    "name": "mask",
+                    "type": "MASK",
+                    "links": null
+                },
+                {
+                    "name": "caption",
+                    "type": "STRING",
+                    "links": [
+                        15
+                    ],
+                    "slot_index": 2
+                },
+                {
+                    "name": "data",
+                    "type": "JSON",
+                    "links": null
+                }
+            ],
+            "properties": {
+                "Node name for S&R": "Florence2Run"
+            },
+            "widgets_values": [
+                "",
+                "detailed_caption",
+                true,
+                false,
+                1024,
+                3,
+                true,
+                "",
+                68629246338888,
+                "randomize"
+            ]
+        }
+    ],
+    "config": {},
+    "groups": [],
+    "version": 0.4,
+    "last_link_id": 17,
+    "last_node_id": 20,
+    "workflow_api": {
+        "15": {
+            "_meta": {
+                "title": "Florence2Run"
+            },
+            "inputs": {
+                "seed": 68629246338888,
+                "task": "detailed_caption",
+                "image": [
+                    "17",
+                    0
+                ],
+                "do_sample": true,
+                "fill_mask": true,
+                "num_beams": 3,
+                "text_input": "",
+                "max_new_tokens": 1024,
+                "florence2_model": [
+                    "16",
+                    0
+                ],
+                "keep_model_loaded": false,
+                "output_mask_select": ""
+            },
+            "class_type": "Florence2Run"
+        },
+        "16": {
+            "_meta": {
+                "title": "Florence2ModelLoader"
+            },
+            "inputs": {
+                "model": "Florence-2-large",
+                "attention": "sdpa",
+                "precision": "fp16"
+            },
+            "class_type": "Florence2ModelLoader"
+        },
+        "17": {
+            "_meta": {
+                "title": "External Image (ComfyUI Deploy)"
+            },
+            "inputs": {
+                "input_id": "input_image",
+                "description": "",
+                "display_name": "",
+                "default_value_url": "https://comfy-deploy-output.s3.us-east-2.amazonaws.com/assets/img_8ucwS8VLsttoS3V5.png"
+            },
+            "class_type": "ComfyUIDeployExternalImage"
+        },
+        "18": {
+            "_meta": {
+                "title": "Show Text 🐍"
+            },
+            "inputs": {
+                "text": [
+                    "15",
+                    2
+                ],
+                "text2": "The image shows a man with blue eyes and a black jacket standing in front of a yellow background. He appears to be a character from the anime series Ao no Exorcist, as indicated by the text at the bottom of the image."
+            },
+            "class_type": "ShowText|pysssss"
+        },
+        "19": {
+            "_meta": {
+                "title": "Preview Image"
+            },
+            "inputs": {
+                "images": [
+                    "15",
+                    0
+                ]
+            },
+            "class_type": "PreviewImage"
+        }
+    },
+    "environment": {
+        "comfyui_version": "9aac21f894a122ddb8d825c57ad61c0db5e630db",
+        "gpu": "A10G",
+        "docker_command_steps": {
+            "steps": [
+                {
+                    "id": "9e6c561c-f",
+                    "data": {
+                        "url": "https://github.com/kijai/ComfyUI-Florence2",
+                        "hash": "257fec56102cf42c7e5a28920b6d1258983ae71c",
+                        "meta": {
+                            "message": "Merge pull request #131 from ComfyNodePRs/update-publish-yaml\n\nUpdate Github Action for Publishing to Comfy Registry",
+                            "committer": {
+                                "date": "2025-03-23T20:12:09.000Z",
+                                "name": "GitHub",
+                                "email": "noreply@github.com"
+                            },
+                            "commit_url": "https://github.com/kijai/ComfyUI-Florence2/commit/257fec56102cf42c7e5a28920b6d1258983ae71c",
+                            "latest_hash": "257fec56102cf42c7e5a28920b6d1258983ae71c",
+                            "stargazers_count": 1104
+                        },
+                        "name": "ComfyUI-Florence2",
+                        "files": [
+                            "https://github.com/kijai/ComfyUI-Florence2"
+                        ],
+                        "install_type": "git-clone"
+                    },
+                    "type": "custom-node"
+                },
+                {
+                    "id": "comfyui-deploy",
+                    "data": {
+                        "url": "https://github.com/BennyKok/comfyui-deploy",
+                        "hash": "f19b80a25d118f9321fae29a1630240375ff29e3",
+                        "name": "ComfyUI Deploy",
+                        "files": [
+                            "https://github.com/BennyKok/comfyui-deploy"
+                        ],
+                        "install_type": "git-clone"
+                    },
+                    "type": "custom-node"
+                },
+                {
+                    "id": "a02bd163-0",
+                    "data": {
+                        "url": "https://github.com/pythongosssss/ComfyUI-Custom-Scripts",
+                        "hash": "9f7b3215e6af317603056a9a1666bf6e83e28835",
+                        "meta": {
+                            "message": "Merge pull request #452 from ComfyNodePRs/update-publish-yaml\n\nUpdate Github Action for Publishing to Comfy Registry",
+                            "committer": {
+                                "date": "2025-03-16T13:01:51.000Z",
+                                "name": "GitHub",
+                                "email": "noreply@github.com"
+                            },
+                            "commit_url": "https://github.com/pythongosssss/ComfyUI-Custom-Scripts/commit/9f7b3215e6af317603056a9a1666bf6e83e28835",
+                            "latest_hash": "9f7b3215e6af317603056a9a1666bf6e83e28835",
+                            "stargazers_count": 2284
+                        },
+                        "name": "pythongosssss/ComfyUI-Custom-Scripts",
+                        "files": [
+                            "https://github.com/pythongosssss/ComfyUI-Custom-Scripts"
+                        ],
+                        "install_type": "git-clone"
+                    },
+                    "type": "custom-node"
+                }
+            ]
+        },
+        "max_containers": 2,
+        "install_custom_node_with_gpu": false,
+        "run_timeout": 300,
+        "scaledown_window": 60,
+        "extra_docker_commands": [],
+        "base_docker_image": null,
+        "python_version": "3.11",
+        "extra_args": null,
+        "prestart_command": null,
+        "min_containers": 0,
+        "machine_hash": "3981e0389b8f66c59b0322819676c71e076ecf11e8e76bcbae79bd8ef9186b0e",
+        "disable_metadata": true
+    }
+}
