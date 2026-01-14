@@ -1,0 +1,557 @@
+{
+  "last_node_id": 17,
+  "last_link_id": 25,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "MochiTextEncode",
+      "pos": {
+        "0": 483,
+        "1": 281
+      },
+      "size": [
+        381.8630768000736,
+        227.23898384078808
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 1
+        }
+      ],
+      "outputs": [
+        {
+          "name": "conditioning",
+          "type": "CONDITIONING",
+          "links": [
+            17
+          ],
+          "slot_index": 0
+        },
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "links": [
+            20
+          ],
+          "slot_index": 1
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "MochiTextEncode"
+      },
+      "widgets_values": [
+        "nature video of a red panda eating bamboo in front of a waterfall",
+        1,
+        false
+      ]
+    },
+    {
+      "id": 2,
+      "type": "CLIPLoader",
+      "pos": {
+        "0": -41,
+        "1": 457
+      },
+      "size": [
+        479.5359523201174,
+        82
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            1
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CLIPLoader"
+      },
+      "widgets_values": [
+        "t5\\google_t5-v1_1-xxl_encoderonly-fp8_e4m3fn.safetensors",
+        "sd3"
+      ]
+    },
+    {
+      "id": 8,
+      "type": "MochiTextEncode",
+      "pos": {
+        "0": 487,
+        "1": 563
+      },
+      "size": [
+        378.8630768000736,
+        183.64429832064002
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 20
+        }
+      ],
+      "outputs": [
+        {
+          "name": "conditioning",
+          "type": "CONDITIONING",
+          "links": [
+            18,
+            21
+          ],
+          "slot_index": 0
+        },
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "MochiTextEncode"
+      },
+      "widgets_values": [
+        "",
+        1,
+        true
+      ]
+    },
+    {
+      "id": 9,
+      "type": "VHS_VideoCombine",
+      "pos": {
+        "0": 1785,
+        "1": 227
+      },
+      "size": [
+        1261.0787353515625,
+        310
+      ],
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 24
+        },
+        {
+          "name": "audio",
+          "type": "AUDIO",
+          "link": null,
+          "shape": 7
+        },
+        {
+          "name": "meta_batch",
+          "type": "VHS_BatchManager",
+          "link": null,
+          "shape": 7
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": null,
+          "shape": 7
+        }
+      ],
+      "outputs": [
+        {
+          "name": "Filenames",
+          "type": "VHS_FILENAMES",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VHS_VideoCombine"
+      },
+      "widgets_values": {
+        "frame_rate": 24,
+        "loop_count": 0,
+        "filename_prefix": "Mochi_preview",
+        "format": "video/h264-mp4",
+        "pix_fmt": "yuv420p",
+        "crf": 19,
+        "save_metadata": true,
+        "pingpong": false,
+        "save_output": false,
+        "videopreview": {
+          "hidden": false,
+          "paused": false,
+          "params": {
+            "filename": "Mochi_preview_00021.mp4",
+            "subfolder": "",
+            "type": "temp",
+            "format": "video/h264-mp4",
+            "frame_rate": 24
+          },
+          "muted": false
+        }
+      }
+    },
+    {
+      "id": 4,
+      "type": "DownloadAndLoadMochiModel",
+      "pos": {
+        "0": 465,
+        "1": 20
+      },
+      "size": {
+        "0": 437.7432556152344,
+        "1": 174
+      },
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "trigger",
+          "type": "CONDITIONING",
+          "link": 21,
+          "shape": 7
+        },
+        {
+          "name": "compile_args",
+          "type": "MOCHICOMPILEARGS",
+          "link": null,
+          "shape": 7
+        }
+      ],
+      "outputs": [
+        {
+          "name": "mochi_model",
+          "type": "MOCHIMODEL",
+          "links": [
+            16
+          ],
+          "slot_index": 0
+        },
+        {
+          "name": "mochi_vae",
+          "type": "MOCHIVAE",
+          "links": [
+            23
+          ],
+          "slot_index": 1
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "DownloadAndLoadMochiModel"
+      },
+      "widgets_values": [
+        "mochi_preview_dit_GGUF_Q8_0.safetensors",
+        "mochi_preview_vae_bf16.safetensors",
+        "fp8_e4m3fn",
+        "sdpa",
+        false
+      ]
+    },
+    {
+      "id": 14,
+      "type": "MochiSampler",
+      "pos": {
+        "0": 960,
+        "1": 243
+      },
+      "size": [
+        315,
+        286
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MOCHIMODEL",
+          "link": 16
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 17
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 18
+        },
+        {
+          "name": "opt_sigmas",
+          "type": "SIGMAS",
+          "link": null,
+          "shape": 7
+        },
+        {
+          "name": "cfg_schedule",
+          "type": "FLOAT",
+          "link": null,
+          "widget": {
+            "name": "cfg_schedule"
+          },
+          "shape": 7
+        }
+      ],
+      "outputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "links": [
+            22,
+            25
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "MochiSampler"
+      },
+      "widgets_values": [
+        848,
+        480,
+        49,
+        30,
+        4.5,
+        0,
+        "fixed",
+        0
+      ]
+    },
+    {
+      "id": 15,
+      "type": "MochiDecodeSpatialTiling",
+      "pos": {
+        "0": 1340,
+        "1": 226
+      },
+      "size": {
+        "0": 390.5999755859375,
+        "1": 198
+      },
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "vae",
+          "type": "MOCHIVAE",
+          "link": 23
+        },
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 22
+        }
+      ],
+      "outputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "links": [
+            24
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "MochiDecodeSpatialTiling"
+      },
+      "widgets_values": [
+        true,
+        4,
+        4,
+        16,
+        1,
+        6
+      ]
+    },
+    {
+      "id": 12,
+      "type": "Note",
+      "pos": {
+        "0": 1349,
+        "1": -156
+      },
+      "size": {
+        "0": 365.5867919921875,
+        "1": 208.3488311767578
+      },
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "title": "Note: WIP!",
+      "properties": {},
+      "widgets_values": [
+        "VAE decoding is extremely heavy so tiling is necessary, I have not found best settings for it yet so testing help is appreciated, you can keep decoding after sampling as the latents are still in memory to see what works.\n\nYou can also save the latents to disk and decode separately.\n\nIncrease the number of tiles until it fits your VRAM, and/or reduce per_batch to split the decoding time wise, this WILL cause frame skipping!\n"
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 17,
+      "type": "LoadLatent",
+      "pos": {
+        "0": 1775,
+        "1": -51
+      },
+      "size": {
+        "0": 315,
+        "1": 58
+      },
+      "flags": {},
+      "order": 2,
+      "mode": 2,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadLatent"
+      },
+      "widgets_values": [
+        "mochi_00001_.latent"
+      ]
+    },
+    {
+      "id": 16,
+      "type": "SaveLatent",
+      "pos": {
+        "0": 1772,
+        "1": -168
+      },
+      "size": {
+        "0": 315,
+        "1": 58
+      },
+      "flags": {},
+      "order": 8,
+      "mode": 2,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 25
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "SaveLatent"
+      },
+      "widgets_values": [
+        "latents/mochi_latent"
+      ]
+    }
+  ],
+  "links": [
+    [
+      1,
+      2,
+      0,
+      1,
+      0,
+      "CLIP"
+    ],
+    [
+      16,
+      4,
+      0,
+      14,
+      0,
+      "MOCHIMODEL"
+    ],
+    [
+      17,
+      1,
+      0,
+      14,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      18,
+      8,
+      0,
+      14,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      20,
+      1,
+      1,
+      8,
+      0,
+      "CLIP"
+    ],
+    [
+      21,
+      8,
+      0,
+      4,
+      0,
+      "CONDITIONING"
+    ],
+    [
+      22,
+      14,
+      0,
+      15,
+      1,
+      "LATENT"
+    ],
+    [
+      23,
+      4,
+      1,
+      15,
+      0,
+      "MOCHIVAE"
+    ],
+    [
+      24,
+      15,
+      0,
+      9,
+      0,
+      "IMAGE"
+    ],
+    [
+      25,
+      14,
+      0,
+      16,
+      0,
+      "LATENT"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.693433494944238,
+      "offset": [
+        64.81666033991527,
+        428.7032954894722
+      ]
+    }
+  },
+  "version": 0.4
+}

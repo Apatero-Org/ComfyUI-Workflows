@@ -1,0 +1,237 @@
+{
+  "last_node_id": 11,
+  "last_link_id": 13,
+  "nodes": [
+    {
+      "id": 3,
+      "type": "PreviewImage",
+      "pos": {
+        "0": 450,
+        "1": 60
+      },
+      "size": {
+        "0": 553.608642578125,
+        "1": 826.3672485351562
+      },
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 11,
+          "label": "images"
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "PreviewImage"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 9,
+      "type": "PreviewImage",
+      "pos": {
+        "0": 1430,
+        "1": 60
+      },
+      "size": {
+        "0": 516.1412353515625,
+        "1": 824.7374267578125
+      },
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 12,
+          "label": "images"
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "PreviewImage"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 10,
+      "type": "ailab_OmniGen",
+      "pos": {
+        "0": 33,
+        "1": 60
+      },
+      "size": {
+        "0": 400,
+        "1": 428
+      },
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image_1",
+          "type": "IMAGE",
+          "link": null,
+          "shape": 7,
+          "label": "image_1"
+        },
+        {
+          "name": "image_2",
+          "type": "IMAGE",
+          "link": null,
+          "shape": 7,
+          "label": "image_2"
+        },
+        {
+          "name": "image_3",
+          "type": "IMAGE",
+          "link": null,
+          "shape": 7,
+          "label": "image_3"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            11,
+            13
+          ],
+          "label": "IMAGE",
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ailab_OmniGen"
+      },
+      "widgets_values": [
+        "20yo woman looking at viewer",
+        "",
+        "Auto",
+        "Balanced",
+        3.5,
+        1.8,
+        50,
+        true,
+        false,
+        512,
+        512,
+        0,
+        "randomize",
+        1024
+      ]
+    },
+    {
+      "id": 11,
+      "type": "ailab_OmniGen",
+      "pos": {
+        "0": 1013,
+        "1": 60
+      },
+      "size": {
+        "0": 400,
+        "1": 428
+      },
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image_1",
+          "type": "IMAGE",
+          "link": 13,
+          "shape": 7,
+          "label": "image_1"
+        },
+        {
+          "name": "image_2",
+          "type": "IMAGE",
+          "link": null,
+          "shape": 7,
+          "label": "image_2"
+        },
+        {
+          "name": "image_3",
+          "type": "IMAGE",
+          "link": null,
+          "shape": 7,
+          "label": "image_3"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            12
+          ],
+          "label": "IMAGE",
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ailab_OmniGen"
+      },
+      "widgets_values": [
+        "The girl in image_1 sitting on rock on top of the mountain (image_1)",
+        "",
+        "Auto",
+        "Balanced",
+        3.5,
+        1.8,
+        50,
+        true,
+        false,
+        512,
+        512,
+        0,
+        "randomize",
+        1024
+      ]
+    }
+  ],
+  "links": [
+    [
+      11,
+      10,
+      0,
+      3,
+      0,
+      "IMAGE"
+    ],
+    [
+      12,
+      11,
+      0,
+      9,
+      0,
+      "IMAGE"
+    ],
+    [
+      13,
+      10,
+      0,
+      11,
+      0,
+      "IMAGE"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 1.0834705943388678,
+      "offset": [
+        454.5646998745825,
+        206.62789963508953
+      ]
+    }
+  },
+  "version": 0.4
+}
